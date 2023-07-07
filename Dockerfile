@@ -34,7 +34,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 #RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
 #RUN docker-php-ext-install gd
 # Configure nginx && mysql
-COPY ./nginx/conf.d /etc.nginx/conf.d
+COPY ./nginx/conf.d/ /etc.nginx/conf.d/
 
 
 
