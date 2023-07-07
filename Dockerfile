@@ -1,7 +1,9 @@
 #install mysql
 #ENV MYSQL_VERSION=8.0.33-1.el8
-FROM php:7.4-fpm
+#FROM mysql:8 AS db
 
+FROM php:7.4-fpm
+#COPY --from=db /usr/bin/mysql /usr/bin/mysql
 COPY ./php/local.ini /usr/local/etc/php/conf.d/local.ini
 COPY . /var/www
 RUN apt-get update && apt-get install -y \
@@ -25,7 +27,7 @@ RUN docker-php-ext-install pdo_mysql zip
 
 #install ngixn and mysql
 RUN apt install -y nginx
-RUN apt-get install -y mysql-server
+RUN apt-get install -y mysql-client
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
