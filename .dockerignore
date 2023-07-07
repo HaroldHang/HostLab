@@ -1,5 +1,5 @@
-/nginx
-/mysql
+
+
 .ignore
 /node_modules
 /public/hot
