@@ -1,0 +1,11 @@
+/nginx
+/mysql
+.ignore
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
