@@ -35,7 +35,7 @@ RUN apt install -y nginx
 RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
 RUN apt-get update
-RUN apt install -y mysql-server
+RUN apt-get install -qq mysql-server
 RUN ls /etc/mysql
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
