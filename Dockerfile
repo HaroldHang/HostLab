@@ -62,6 +62,7 @@ RUN chmod +x ./artisan
 RUN chmod +x ./*.php
 EXPOSE 9000
 EXPOSE 3306
+EXPOSE 80 443
 COPY ./start.sh /start.sh
 WORKDIR /
 RUN chmod +x start.sh
