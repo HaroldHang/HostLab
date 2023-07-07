@@ -32,11 +32,11 @@ mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PA
 mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}
 EOF
 RUN apt install -y nginx
-RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.24-1_all.deb
-RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.24-1_all.deb
+RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
+RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
 RUN apt-get update
-RUN apt install -y mysql-server mysql-client
-
+RUN apt install -y mysql-server
+RUN ls /etc/mysql
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
