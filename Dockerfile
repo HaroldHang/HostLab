@@ -27,7 +27,7 @@ RUN docker-php-ext-install pdo_mysql zip
 
 #install ngixn and mysql
 RUN apt install -y nginx
-RUN apt-get install -y mysql-client
+RUN apt-get update && apt-get install -y mysql-client
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
