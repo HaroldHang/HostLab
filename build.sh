@@ -1,4 +1,5 @@
 #!bin/sh
+cd /var/www
 pwd
 php fpm
 php artisan key:generate
