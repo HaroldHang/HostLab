@@ -64,5 +64,6 @@ EXPOSE 9000
 EXPOSE 3306
 COPY ./start.sh /start.sh
 WORKDIR /
+RUN chmod +x start.sh
 CMD ["./start.sh"]
 
