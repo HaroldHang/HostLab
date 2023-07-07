@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     wget dpkg \
-    lsb-release
+    lsb-release gnupg
 #RUN add-apt-repository ppa:ondrej/php && apt-get update
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo_mysql zip
