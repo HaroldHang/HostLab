@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     wget dpkg \
-    lsb-release gnupg
+    lsb-release gnupg\
+    debconf-utils zsh htop libaio1
 #RUN add-apt-repository ppa:ondrej/php && apt-get update
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo_mysql zip
@@ -25,11 +26,16 @@ RUN docker-php-ext-install pdo_mysql zip
 #RUN apt-get install php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip php7.4-redis php7.4-intl -y
 
 #install ngixn and mysql
+RUN debconf-set-selections <<EOF
+mysql-apt-config mysql-apt-config/select-server select mysql-8.0
+mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PASSWORD}
+mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}
+EOF
 RUN apt install -y nginx
 RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.24-1_all.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.24-1_all.deb
 RUN apt-get update
-RUN apt install -y mysql-client
+RUN apt install -y mysql-server mysql-client
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -40,7 +46,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV nginx_vhost /etc/nginx/sites-available/default
 ENV nginx_conf /etc/nginx/nginx.conf
 COPY ./nginx/conf.d/app.conf ${nginx_vhost}
-RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' ${php_conf} && echo "\ndaemon off;" >> ${nginx_conf}
+#RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' ${php_conf} && echo "\ndaemon off;" >> ${nginx_conf}
 
 
 
