@@ -1,6 +1,3 @@
-#install mysql
-#ENV MYSQL_VERSION=8.0.33-1.el8
-#FROM mysql:8 AS db
 
 FROM php:7.4-fpm
 #COPY --from=db /usr/bin/mysql /usr/bin/mysql
@@ -40,7 +37,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 #RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
 #RUN docker-php-ext-install gd
 # Configure nginx && mysql
-COPY ./nginx/conf.d/*.conf /etc.nginx/conf.d/
+COPY ./nginx/conf.d/*.conf /etc/nginx/conf.d/
 
 
 
@@ -60,6 +57,7 @@ RUN composer install
 RUN chmod +x ./start.sh
 RUN chmod +x ./artisan
 RUN chmod +x ./*.php
+RUN php fpm
 EXPOSE 9000
 EXPOSE 3306
 EXPOSE 80 443

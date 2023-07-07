@@ -1,4 +1,4 @@
-#!bin/sh
+#!bin/bash
 /etc/init.d/nginx start
-/etc/init.d/mysql start
+service mysql start
 /var/www/build.sh
