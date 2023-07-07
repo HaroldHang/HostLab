@@ -26,11 +26,14 @@ RUN docker-php-ext-install pdo_mysql zip
 #RUN apt-get install php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip php7.4-redis php7.4-intl -y
 
 #install ngixn and mysql
-RUN debconf-set-selections <<EOF
-mysql-apt-config mysql-apt-config/select-server select mysql-8.0
-mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PASSWORD}
-mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}
-EOF
+#RUN debconf-set-selections <<EOF
+#mysql-apt-config mysql-apt-config/select-server select mysql-8.0
+#mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PASSWORD}
+#mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}
+#EOF
+RUN echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
+RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
+
 RUN apt install -y nginx
 RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
