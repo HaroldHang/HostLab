@@ -40,6 +40,9 @@ RUN composer install
 COPY --chown=www:www . /var/www
 #USER www
 # Expose port 9000 and start php-fpm server
+RUN chmod +x ./start.sh
+RUN chmod +x ./artisan
+RUN chmod +x ./*.php
 EXPOSE 9000
 CMD ["./start.sh"]
 
