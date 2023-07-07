@@ -1,4 +1,5 @@
 #!bin/sh
+/etc/init.d/nginx start
 mysqld
 php fpm
 php artisan key:generate

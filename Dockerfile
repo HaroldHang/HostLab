@@ -49,12 +49,12 @@ WORKDIR /var/www
 
 #COPY ./.env.example ./.env
 # Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+#RUN groupadd -g 1000 www
+#RUN useradd -u 1000 -ms /bin/bash -g www www
 ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN composer install
 #ENV MYSQL_ROOT_PASSWORD = ${MYSQL_ROOT_PASSWORD}
-COPY --chown=www:www . /var/www
+#COPY --chown=www:www . /var/www
 #USER www
 # Expose port 9000 and start php-fpm server
 RUN chmod +x ./start.sh
@@ -62,7 +62,7 @@ RUN chmod +x ./artisan
 RUN chmod +x ./*.php
 EXPOSE 9000
 EXPOSE 3306
-COPY ./start.sh /start.sh
-WORKDIR /
+#COPY ./start.sh /start.sh
+#WORKDIR /
 CMD ["./start.sh"]
 
