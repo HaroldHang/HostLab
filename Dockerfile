@@ -57,7 +57,7 @@ RUN composer install
 RUN chmod +x ./start.sh
 RUN chmod +x ./artisan
 RUN chmod +x ./*.php
-RUN php fpm
+#RUN php fpm
 EXPOSE 9000
 EXPOSE 3306
 EXPOSE 80 443
