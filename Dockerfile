@@ -65,5 +65,6 @@ EXPOSE 3306
 COPY ./start.sh /start.sh
 WORKDIR /
 RUN chmod +x start.sh
+RUN chmod +x /var/www/build.sh
 CMD ["./start.sh"]
 
