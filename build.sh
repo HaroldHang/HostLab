@@ -1,3 +1,5 @@
+#!bin/sh
+pwd
 php fpm
 php artisan key:generate
 php artisan migrate:refresh
