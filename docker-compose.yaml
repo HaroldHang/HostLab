@@ -13,9 +13,9 @@ services:
 
     networks:
       - app-network
-    secrets:
-      - source: app-file
-        target : /var/www/.env
+    #secrets:
+    #  - source: app-file
+    #    target : /var/www/.env
     tty: true
   db:
     image: mysql:8
@@ -60,7 +60,7 @@ volumes:
   laravel_web:
   db_data:
 
-secrets:
-  app-file:
-    file: /home/haroldhang/app_env.txt
+#secrets:
+#  app-file:
+#    file: /home/haroldhang/app_env.txt
 
