@@ -1,4 +1,5 @@
-
+#!bin/sh
+mysqld
 php fpm
 php artisan key:generate
 php artisan migrate:refresh

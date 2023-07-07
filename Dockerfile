@@ -1,3 +1,5 @@
+#install mysql
+#ENV MYSQL_VERSION=8.0.33-1.el8
 FROM php:7.4-fpm
 
 COPY ./php/local.ini /usr/local/etc/php/conf.d/local.ini
@@ -20,12 +22,21 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN docker-php-ext-install pdo_mysql zip
 #RUN php -m && exit 1
 #RUN apt-get install php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip php7.4-redis php7.4-intl -y
+
+#install ngixn and mysql
+RUN apt install -y nginx
+RUN apt install -y mysql-server
+
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
 #RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
 #RUN docker-php-ext-install gd
-# Install composer
+# Configure nginx && mysql
+COPY ./nginx/conf.d /etc.nginx/conf.d
+
+
 
 # Change current user to www
 WORKDIR /var/www
@@ -44,5 +55,6 @@ RUN chmod +x ./start.sh
 RUN chmod +x ./artisan
 RUN chmod +x ./*.php
 EXPOSE 9000
+EXPOSE 3306
 CMD ["./start.sh"]
 
