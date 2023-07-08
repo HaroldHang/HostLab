@@ -2,9 +2,12 @@ FROM ubuntu/mysql:latest
 
 RUN apt update
 #RUN apt upgrade -y
+RUN apt -y install software-properties-common
+RUN apt-add repository ppa:ondrej/php
+RUN apt-get update
 
 # Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt install -y nginx php-fpm supervisor
+RUN apt install -y nginx php-7.4 php-fpm supervisor
 RUN apt-get install -y \
     git \
     curl \
