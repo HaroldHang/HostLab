@@ -40,10 +40,14 @@ RUN apt install -y nginx
 #RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
 #RUN apt-get update
 #RUN apt-get install -qq mysql-server
+RUN ls /usr/bin
 COPY --from=db /usr/bin/ /usr/bin/
 COPY --from=db /usr/sbin/ /usr/sbin/
 COPY --from=db /etc/mysql /etc/mysql
-
+COPY --from=db /var/lib/mysql /var/lib/mysql
+RUN ls /usr/bin
+RUN ls /usr/sbin
+RUN ls /var/lib/mysql
 RUN ls /etc/mysql/conf.d
 #RUN cat /etc/mysql/conf.d
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
