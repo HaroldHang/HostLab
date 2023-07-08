@@ -83,7 +83,7 @@ COPY ./start.sh /start.sh
 WORKDIR /
 RUN chmod +x start.sh
 RUN chmod +x /var/www/build.sh
-RUN find -type d -name fpm
-RUN find -type d -name php
+RUN ["/bin/bash", "-c", "find -type d -name fpm"]
+RUN ["/bin/bash/", "-c" "find -type d -name php"]
 CMD ["./start.sh"]
 
