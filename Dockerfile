@@ -1,3 +1,4 @@
+FROM mysql:8 as db
 
 FROM php:7.4-fpm
 #COPY --from=db /usr/bin/mysql /usr/bin/mysql
@@ -31,14 +32,18 @@ RUN docker-php-ext-install pdo_mysql zip
 #mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PASSWORD}
 #mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}
 #EOF
-RUN echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
-RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
+#RUN echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
+#RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
 
 RUN apt install -y nginx
-RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
-RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
-RUN apt-get update
-RUN apt-get install -qq mysql-server
+#RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
+#RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
+#RUN apt-get update
+#RUN apt-get install -qq mysql-server
+COPY --from=db /usr/bin/ /usr/bin/
+COPY --from=db /usr/sbin/ /usr/sbin/
+COPY --from=db /etc/mysql /etc/mysql
+
 RUN ls /etc/mysql
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
