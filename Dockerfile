@@ -44,8 +44,8 @@ COPY --from=db /usr/bin/ /usr/bin/
 COPY --from=db /usr/sbin/ /usr/sbin/
 COPY --from=db /etc/mysql /etc/mysql
 
-RUN ls /etc/mysql
-RUN cat /etc/mysql/conf.d
+RUN ls /etc/mysql/conf.d
+#RUN cat /etc/mysql/conf.d
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
