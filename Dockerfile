@@ -50,6 +50,7 @@ RUN ls /usr/sbin
 RUN ls /var/lib/mysql
 RUN ls /etc/mysql/conf.d
 #RUN cat /etc/mysql/conf.d
+RUN apt install libreadline7 libprotobuf-lite.so.3.19.4
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
