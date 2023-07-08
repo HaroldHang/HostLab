@@ -1,10 +1,10 @@
 FROM ubuntu/mysql:latest
 
 RUN apt update
-RUN apt upgrade -y
+#RUN apt upgrade -y
 
 # Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt install -y nginx php7.4-fpm supervisor
+RUN apt install -y nginx php-fpm supervisor
 RUN apt-get install -y \
     git \
     curl \
