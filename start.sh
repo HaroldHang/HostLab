@@ -1,6 +1,7 @@
 #!bin/bash
 
+/etc/init.d/nginx -t
 /etc/init.d/nginx start
-service mysql start
-RUN ls /etc/init.d && ps
+mysqld
+ls /etc/init.d && ps
 /var/www/build.sh
