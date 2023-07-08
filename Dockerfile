@@ -1,4 +1,4 @@
-FROM mysql:8 as db
+#FROM mysql:8 as db
 
 FROM php:7.4-fpm
 #COPY --from=db /usr/bin/mysql /usr/bin/mysql
@@ -33,24 +33,19 @@ RUN docker-php-ext-install pdo_mysql zip
 #mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}
 #EOF
 #RUN echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
-#RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selections
+#RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}" | debconf-set-selectionst-
 
-RUN apt install -y nginx
+RUN apt-get update && apt install -y nginx
 #RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
 #RUN DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.25-1_all.deb
 #RUN apt-get update
 #RUN apt-get install -qq mysql-server
-RUN ls /usr/bin
-COPY --from=db /usr/bin/ /usr/bin/
-COPY --from=db /usr/sbin/ /usr/sbin/
-COPY --from=db /etc/mysql /etc/mysql
-COPY --from=db /var/lib/mysql /var/lib/mysql
-RUN ls /usr/bin
-RUN ls /usr/sbin
-RUN ls /var/lib/mysql
-RUN ls /etc/mysql/conf.d
-#RUN cat /etc/mysql/conf.d
-RUN apt install libreadline7 libprotobuf-lite.so.3.19.4
+#COPY --from=db /usr/bin/ /usr/bin/
+#COPY --from=db /usr/sbin/ /usr/sbin/
+#COPY --from=db /etc/mysql /etc/mysql
+#COPY --from=db /var/lib/mysql /var/lib/mysql
+
+#RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl

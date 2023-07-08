@@ -3,8 +3,8 @@ cd /var/www
 pwd
 php-fpm
 php artisan key:generate
-php artisan migrate:refresh
-php artisan db:seed
+#php artisan migrate:refresh
+#php artisan db:seed
 php artisan cache:clear
 #php artisan config:clear && \
 php artisan route:clear
