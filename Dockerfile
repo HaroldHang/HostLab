@@ -38,7 +38,7 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 
 RUN composer install
 RUN chmod +x ./build.sh
-COPY ./scripts/start.sh /start.sh
+COPY ./start.sh /start.sh
 WORKDIR /
 RUN chmod +x ./start.sh
 EXPOSE 80
