@@ -83,6 +83,7 @@ COPY ./start.sh /start.sh
 WORKDIR /
 RUN chmod +x start.sh
 RUN chmod +x /var/www/build.sh
-RUN cat /etc/php/7.4/fpm
+RUN find -type d -name fpm
+RUN find -type d -name php
 CMD ["./start.sh"]
 
