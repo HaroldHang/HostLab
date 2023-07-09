@@ -60,6 +60,7 @@ WORKDIR /var/www
 USER root
 RUN composer install
 RUN npm install
+RUN chmod -R +rwx /root/.npm/
 RUN npm run prod
 RUN chmod +x ./build.sh
 COPY ./start.sh /start.sh
