@@ -59,7 +59,7 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 WORKDIR /var/www
 RUN composer install
 RUN npm install
-RUN npm run buidl
+RUN npm run build
 RUN chmod +x ./build.sh
 COPY ./start.sh /start.sh
 WORKDIR /
