@@ -54,3 +54,5 @@ WORKDIR /
 RUN chmod +x ./start.sh
 EXPOSE 80
 EXPOSE 443
+CMD ["./start.sh"]
+
