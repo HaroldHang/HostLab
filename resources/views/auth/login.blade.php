@@ -47,7 +47,7 @@
                                   <input
                                     class="block w-full mt-1 text-sm border-2 border-green-200 px-3 py-2 transition-border duration-50 dark:border-gray-600 dark:bg-gray-700 focus:border-green-600 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     placeholder="Jane Doe" name="pseudo"
-                                  />
+                                    required />
                                 </label>
                                 <label class="block mt-4 text-sm">
                                   <span class="text-gray-700 dark:text-gray-400">Mot de passe</span>
@@ -55,10 +55,10 @@
                                     class="block w-full mt-1 text-sm border-2 border-green-200 px-3 py-2 transition-border duration-50 dark:border-gray-600 dark:bg-gray-700 focus:border-green-600 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     placeholder="mot de passe"
                                     type="password" name="password"
-                                  />
+                                    required/>
                                 </label>
                                 <div class="form-check hidden">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} >
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
