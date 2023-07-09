@@ -7,5 +7,5 @@
 #ps aux
 #ls /etc/init.d
 
-/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
 /var/www/build.sh
+/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
