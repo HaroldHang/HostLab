@@ -41,6 +41,9 @@ COPY ./nginx/conf.d/app.conf ${nginx_vhost}
 
 RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' ${php_conf} && echo "\ndaemon off;" >> ${nginx_conf}
 COPY ./nginx/supervisord.conf ${supervisor_conf}
+RUN mkdir -p /run/php
+RUN chown -R www-data:www-data /run/php
+
 RUN chown -R www-data:www-data /var/www
 RUN chown -R www-data:www-data /var/www/storage
 RUN chown -R www-data:www-data /var/www/bootstrap/cache

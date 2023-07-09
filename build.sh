@@ -1,5 +1,5 @@
 #!bin/sh
-php-fpm
+php7.4-fpm
 cd /var/www
 pwd
 php artisan key:generate
