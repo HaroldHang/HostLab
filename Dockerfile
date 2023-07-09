@@ -3,7 +3,7 @@ FROM ubuntu/mysql:latest
 RUN apt update
 #RUN apt upgrade -y
 RUN apt -y install software-properties-common
-RUN apt-add-repository ppa:ondrej/php
+RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 RUN apt-get update
 
 # Install nginx, php-fpm and supervisord from ubuntu repository
