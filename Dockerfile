@@ -57,6 +57,6 @@ COPY ./start.sh /start.sh
 WORKDIR /
 RUN chmod +x ./start.sh
 EXPOSE 80
-EXPOSE 443
+#EXPOSE 443
 CMD ["./start.sh"]
 ENTRYPOINT ["docker-entrypoint.sh"]
