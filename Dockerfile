@@ -1,5 +1,7 @@
 FROM ubuntu/mysql:latest
 
+COPY . /var/www
+
 RUN apt update
 #RUN apt upgrade -y
 RUN apt -y install software-properties-common
@@ -44,7 +46,7 @@ RUN chown -R www-data:www-data /var/www/bootstrap/cache
 
 # Volume configuration
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/var/run","/var/lib/mysql"]
-
+WORKDIR /var/www
 RUN composer install
 RUN chmod +x ./build.sh
 COPY ./start.sh /start.sh
