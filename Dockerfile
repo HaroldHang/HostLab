@@ -57,6 +57,7 @@ RUN chown -R www-data:www-data /var/www/bootstrap/cache
 # Volume configuration
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/var/run","/var/lib/mysql"]
 WORKDIR /var/www
+USER root
 RUN composer install
 RUN npm install
 RUN npm run prod
